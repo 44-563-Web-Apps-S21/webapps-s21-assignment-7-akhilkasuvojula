@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>My List Page</title>
+
+   <style>
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+            background-color:rgb(78, 30, 210);
+        }
+        
+        .flex-container>div {
+            background-color: #f1f1f1;
+            margin: 10px;
+            padding: 20px;
+            font-size: 30px;
+        }
+        #button{background-color: rgb(198, 201, 28);
+        width: 150px;
+        height:50px;
+        font-weight: bold;}
+
+        
+        
+        @media (max-width: 600px) {
+            .flex-container {
+                flex-direction: column;
+                background-color: rgb(211, 142, 15);
+        
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 class="text-dark">Akhil Kasuvojula builds a list</h1>
+    <label for="text" id="12" style= "font-size:25px";>Enter a word</label>
+    <input type="text" id="text" name="form1_text"> <br><br>
+
+    <div class="flex-container" id="target">
+        <div class="listy"> row item 1</div>
+        <div class="listy">row item 2</div>
+        <div class="listy"> row item 3</div>
+    </div>
+
+    <p> <b>click the button to add the  row item</b>
+    </p>
+    <button onclick="makeNewDiv()" id="button">Add one</button>
+
+
+
+<script>
+    function makeNewDiv() {
+        const element = document.createElement("div");
+        element.innerHTML = document.getElementById("text").value;
+        element.setAttribute('class', 'listy');
+        element.style.color = "orange"
+        var i;
+        var listyItems = document.getElementsByClassName("listy");
+        len = listyItems.length;
+        var r = 0;
+        if (len > 8) {
+            for (var k = 0; k < 8; k++) {
+                if (listyItems[k].innerHTML == element.innerHTML) {
+                    listyItems[k].remove();
+                    console.log("We are getting rid of duplicates");
+                    r = 1;
+                    break;
+                }
+            }
+            if (r == 0) {
+                i = Math.floor((Math.random() * 9) + 0);
+                listyItems[i].remove();
+            }
+        }
+        document.getElementById('target').appendChild(element)
+
+    }
+    </script>
+    </body>
+    </html>
